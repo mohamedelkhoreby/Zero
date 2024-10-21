@@ -1,4 +1,4 @@
-package moo.jee.zero
+package moo.jee.zero.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,7 +14,7 @@ class IntroActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.apply {
         startBtn.setOnClickListener{
-                startActivity(Intent(this@IntroActivity,MainActivity::class.java))
+                startActivity(Intent(this@IntroActivity, MainActivity::class.java))
             }
         }
     }
