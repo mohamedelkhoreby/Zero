@@ -8,6 +8,7 @@ import androidx.viewpager2.widget.ViewPager2
 import moo.jee.zero.databinding.SliderItemContainerBinding
 import moo.jee.zero.model.SliderModel
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.request.RequestOptions;
 
@@ -18,22 +19,20 @@ class SliderAdapter(
 
     private lateinit var context: Context  // Context used for image loading
 
-    // Runnable to refresh the data and update the UI when the last item is reached
-    private val runnable = Runnable {
-        sliderItems = sliderItems  // No changes to the list, just refreshing the adapter
-        notifyDataSetChanged()     // Notify adapter to update UI
-    }
 
     // ViewHolder class for binding and displaying the slider image
     class SliderViewHolder(private val binding: SliderItemContainerBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
         // Function to load and set the image in the view using Glide
         fun setImage(sliderItems: SliderModel, context: Context) {
             Glide.with(context)
-                .load(sliderItems.url)   // Load image from the URL in SliderModel
-                .apply { RequestOptions().transform(CenterInside()) }  // Apply transformation
-                .into(binding.imageSlide)  // Set the image to the ImageView in the layout
+                .load(sliderItems.url)
+                .apply(
+                    RequestOptions()
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)  // Cache images to avoid reload
+                        .transform(CenterInside())// Apply transformation
+                )
+                .into(binding.imageSlide)// Load the image into ImageView
         }
     }
 
@@ -57,9 +56,7 @@ class SliderAdapter(
         holder.setImage(sliderItems[position], context)
 
         // When reaching the second last item, post the runnable to refresh the adapter
-        if (position == sliderItems.lastIndex - 1) {
-            viewPager2.post(runnable)
-        }
+
     }
 
     // Returns the total number of items in the slider
