@@ -18,4 +18,11 @@
     <string name="dollar_sign">$-</string>
     <string name="title">title</string>
     <string name="buy_now">Buy Now</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="your_cart_is_empty">Your Cart is Empty</string>
+    <string name="cash">Cash</string>
+    <string name="pay_cash">Pay Cash When the medicines\n at the destination</string>
+    <string name="bank_transfer">Bank Transfer</string>
+    <string name="login">Login to your online account payment</string>
+    <string name="check_out">Check Out</string>
 </resources>

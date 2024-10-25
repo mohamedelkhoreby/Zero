@@ -65,7 +65,7 @@ class DetailActivity : AppCompatActivity() {
             finish()
         }
         binding.carBtn.setOnClickListener {
-            //  startActivity(Intent(DetailActivity))
+            startActivity(Intent(this@DetailActivity, CartActivity::class.java))
         }
     }
 }

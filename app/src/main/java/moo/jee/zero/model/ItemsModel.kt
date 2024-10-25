@@ -1,6 +1,5 @@
 package moo.jee.zero.model
 
-import android.media.Rating
 import android.os.Parcel
 import android.os.Parcelable
 
@@ -13,7 +12,7 @@ data class ItemsModel(
     var rating: Double = 0.0,
     var numberInCart: Int = 0,
     var showRecommendation: Boolean = false,
-    var category: Int = 0
+    var categoryId: String = ""
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString().toString(),
@@ -24,7 +23,7 @@ data class ItemsModel(
         parcel.readDouble(),
         parcel.readInt(),
         parcel.readByte() != 0.toByte(),
-        parcel.readInt()
+        parcel.readString().toString()
     ) {
     }
 
@@ -37,7 +36,7 @@ data class ItemsModel(
         parcel.writeDouble(rating)
         parcel.writeInt(numberInCart)
         parcel.writeByte(if (showRecommendation) 1 else 0)
-        parcel.writeInt(category)
+        parcel.writeString(categoryId)
     }
 
     override fun describeContents(): Int {
